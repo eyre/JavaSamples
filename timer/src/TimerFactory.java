@@ -22,6 +22,7 @@ public class TimerFactory {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+//                throw new RuntimeException();
             }
         }, 3*1000);
 
