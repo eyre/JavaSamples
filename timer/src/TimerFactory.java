@@ -49,12 +49,20 @@ public class TimerFactory {
         JobDetail jobDetail = JobBuilder.newJob(PrintTimeJob.class).withIdentity("printTimeJob","group1").build();
         Trigger trigger = TriggerBuilder.newTrigger().withIdentity("printTimeTrigger","group1")
                 .startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(3).repeatForever()).build();
+
+        JobDetail cronJobDetail = JobBuilder.newJob(PrintTimeJob.class).withIdentity("cronJobDetail","groupCron").build();
+        CronTrigger cronTrigger = TriggerBuilder.newTrigger()
+                .withIdentity("cronTrigger","groupCron")
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 2 18 */1 * ? *")) //秒 分 时 日 月 周 年
+                .build();
+
         SchedulerFactory schedulerFactory = new StdSchedulerFactory();
         try {
             Scheduler scheduler = schedulerFactory.getScheduler();
             scheduler.start();
 
             scheduler.scheduleJob(jobDetail, trigger);
+            scheduler.scheduleJob(cronJobDetail, cronTrigger);
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
