@@ -62,7 +62,7 @@ public class TimerFactory {
             scheduler.start();
 
             scheduler.scheduleJob(jobDetail, trigger);
-            scheduler.scheduleJob(cronJobDetail, cronTrigger);
+//            scheduler.scheduleJob(cronJobDetail, cronTrigger);
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
