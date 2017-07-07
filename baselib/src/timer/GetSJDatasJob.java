@@ -33,8 +33,6 @@ public class GetSJDatasJob implements Job{
         System.out.println(sjGetInverterUrl);
 
         try {
-            OkHttpClient okHttpClient = IgnoreSSLFactory.getIgnoreSSLHttpClient();
-            OkHttpUtils.initClient(okHttpClient);
 
             OkHttpUtils
                     .get()

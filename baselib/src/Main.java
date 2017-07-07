@@ -6,10 +6,10 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            HttpUtils.init();
             new GetSJTokenJob().execute(null);
-            Thread.sleep(5);
+            Thread.sleep(5*1000);
             new GetSJDatasJob().execute(null);
-//            new HttpUtils().getSjToken();
         } catch (Exception e) {
             e.printStackTrace();
         }
