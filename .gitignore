@@ -1,3 +1,15 @@
 .idea
 build
 out
+classes
+
+jfinal-test/.idea
+jfinal-test/out
+jfinal-test/jfinaltest/web/WEB-INF/classes
+jfinal-test/jfinaltest/web/WEB-INF/test-classes
+
+timer/.idea
+timer/out
+
+baselib/.idea
+baselib/out

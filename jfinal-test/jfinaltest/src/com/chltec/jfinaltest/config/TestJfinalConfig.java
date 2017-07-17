@@ -7,8 +7,11 @@ import com.jfinal.ext.plugin.cron.Cron4jPlugin;
 import com.jfinal.ext.plugin.jms.JmsPlugin;
 import com.jfinal.ext.plugin.quartz.QuartzPlugin;
 import com.jfinal.ext.plugin.shiro.ShiroPlugin;
+import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.plugin.ehcache.EhCachePlugin;
+import com.jfinal.plugin.redis.RedisPlugin;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
@@ -44,6 +47,13 @@ public class TestJfinalConfig extends JFinalConfig{
 //        JmsPlugin jmsPlugin = new JmsPlugin();
 //        plugins.add(jmsPlugin);
 
+        //Ehcache plugin
+        plugins.add(new EhCachePlugin(PathKit.getRootClassPath()+"/ehcache.xml"));
+        //Redis plugin
+        String redisHost = PropKit.use("redis.properties").get("redis.host");
+        int redisPort = PropKit.use("redis.properties").getInt("redis.port");
+        RedisPlugin redisPlugin = new RedisPlugin("redis",redisHost,redisPort);
+        plugins.add(redisPlugin);
     }
 
     @Override
@@ -58,17 +68,17 @@ public class TestJfinalConfig extends JFinalConfig{
 
     @Override
     public void afterJFinalStart() {
-        JobDetail jobDetail = JobBuilder.newJob(TestJob.class).withIdentity("printTimeJob","group1").build();
-        Trigger trigger = TriggerBuilder.newTrigger().withIdentity("printTimeTrigger","group1")
-                .startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(3).repeatForever()).build();
-        SchedulerFactory schedulerFactory = new StdSchedulerFactory();
-        try {
-            Scheduler scheduler = schedulerFactory.getScheduler();
-            scheduler.start();
-
-            scheduler.scheduleJob(jobDetail, trigger);
-        } catch (SchedulerException e) {
-            e.printStackTrace();
-        }
+//        JobDetail jobDetail = JobBuilder.newJob(TestJob.class).withIdentity("printTimeJob","group1").build();
+//        Trigger trigger = TriggerBuilder.newTrigger().withIdentity("printTimeTrigger","group1")
+//                .startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(3).repeatForever()).build();
+//        SchedulerFactory schedulerFactory = new StdSchedulerFactory();
+//        try {
+//            Scheduler scheduler = schedulerFactory.getScheduler();
+//            scheduler.start();
+//
+//            scheduler.scheduleJob(jobDetail, trigger);
+//        } catch (SchedulerException e) {
+//            e.printStackTrace();
+//        }
     }
 }
