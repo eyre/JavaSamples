@@ -8,6 +8,8 @@ jfinal-test/out
 jfinal-test/jfinaltest/web/WEB-INF/classes
 jfinal-test/jfinaltest/web/WEB-INF/test-classes
 
+jfinalmaven/jfinalweb/target
+
 timer/.idea
 timer/out
 

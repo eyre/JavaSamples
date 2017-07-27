@@ -49,11 +49,11 @@ public class TestJfinalConfig extends JFinalConfig{
 
         //Ehcache plugin
         plugins.add(new EhCachePlugin(PathKit.getRootClassPath()+"/ehcache.xml"));
-        //Redis plugin
-        String redisHost = PropKit.use("redis.properties").get("redis.host");
-        int redisPort = PropKit.use("redis.properties").getInt("redis.port");
-        RedisPlugin redisPlugin = new RedisPlugin("redis",redisHost,redisPort);
-        plugins.add(redisPlugin);
+//        //Redis plugin
+//        String redisHost = PropKit.use("redis.properties").get("redis.host");
+//        int redisPort = PropKit.use("redis.properties").getInt("redis.port");
+//        RedisPlugin redisPlugin = new RedisPlugin("redis",redisHost,redisPort);
+//        plugins.add(redisPlugin);
     }
 
     @Override

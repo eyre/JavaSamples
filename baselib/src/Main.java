@@ -1,7 +1,7 @@
 import http.HttpUtils;
 import timer.GetSJDatasJob;
 import timer.GetSJTokenJob;
-import utils.CRC;
+import utils.MathUtils;
 
 public class Main {
 
@@ -15,9 +15,12 @@ public class Main {
 //            e.printStackTrace();
 //        }
 
-        byte[] queryId = {0x02, 0x01};
-        Character crc = CRC.crcVal(queryId);
-        Character crc1 = CRC.crcVal1(queryId);
-        System.out.println(crc);
+        double a = 0.032;
+        double b = 3.12;
+        System.out.println(0.02+0.12);
+        System.out.println(MathUtils.add(0.02,0.12));
+        System.out.println(MathUtils.sub(0.02,0.12));
+        System.out.println(MathUtils.multiply(0.02,0.12));
+        System.out.println(MathUtils.div(0.02,0.12));
     }
 }
