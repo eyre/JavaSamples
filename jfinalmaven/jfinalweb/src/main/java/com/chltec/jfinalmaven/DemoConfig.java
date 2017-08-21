@@ -1,5 +1,6 @@
 package com.chltec.jfinalmaven;
 
+import com.cybermkd.mongo.plugin.MongoJFinalPlugin;
 import com.jfinal.config.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
@@ -27,6 +28,21 @@ public class DemoConfig extends JFinalConfig{
 
         ActiveRecordPlugin activeRecordPlugin = new ActiveRecordPlugin(c3p0Plugin);
         plugins.add(activeRecordPlugin);
+
+        configMongoDBPlugin(plugins);
+    }
+
+    private void configMongoDBPlugin(Plugins plugins){
+        MongoJFinalPlugin mongoJFinalPlugin = new MongoJFinalPlugin();
+        String mongoHost = ConfigUtil.get("mongo.host");
+        int mongoPort = ConfigUtil.getInt("mongo.port");
+        String mongoDbName = ConfigUtil.get("mongo.db");
+        String username = ConfigUtil.get("mongo.user");
+        String password = ConfigUtil.get("mongo.password");
+        mongoJFinalPlugin.add(mongoHost,mongoPort);
+        mongoJFinalPlugin.setDatabase(mongoDbName);
+//        mongoJFinalPlugin.auth(username,password);
+        plugins.add(mongoJFinalPlugin);
     }
 
     @Override
